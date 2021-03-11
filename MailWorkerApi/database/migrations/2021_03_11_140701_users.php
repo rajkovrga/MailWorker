@@ -18,7 +18,9 @@ class Users extends Migration
             $table->string('email',50)->unique();
             $table->string('first_name',50);
             $table->string('last_name',50);
+            $table->string('password',200);
             $table->rememberToken();
+            $table->timestamp('email_verified_at')->nullable();
             $table->timestamps();
         });
     }
