@@ -1,4 +1,4 @@
-ma<?php
+<?php
 
 return [
 
