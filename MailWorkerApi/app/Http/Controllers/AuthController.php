@@ -7,7 +7,6 @@ use App\Exceptions\EmailVerifyException;
 use App\Exceptions\NotActiveException;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
-use App\Models\User;
 use App\Notifications\VerifyAccount;
 use App\Services\AuthService;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -80,7 +79,7 @@ class AuthController extends Controller
         catch (\Exception $exception)
         {
             Log::error($exception->getMessage());
-            return response($exception->getMessage(), 500);
+            return response('Server error', 500);
         }
     }
 
@@ -107,7 +106,20 @@ class AuthController extends Controller
         catch (\Exception $er)
         {
             Log::error($er->getMessage());
-            return response($er->getMessage(), 500);
+            return response('Server error', 500);
+        }
+    }
+
+    public function logout(Request $request)
+    {
+        try {
+            $request->user()->currentAccessToken()->delete();
+            return response('Logout success');
+        }
+        catch (\Exception $er)
+        {
+            Log::error($er->getMessage());
+            return response('Server error', 500);
         }
     }
 }

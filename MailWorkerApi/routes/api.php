@@ -21,3 +21,9 @@ Route::group([], function ()
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/verify', [AuthController::class, 'verify'])->name('verify');
 });
+
+Route::middleware('auth:sanctum')->group( function ()
+{
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
+
