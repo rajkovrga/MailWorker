@@ -1,4 +1,4 @@
-module mailworker.com/worker
+module github.com/rajkovrga/MailWorker
 
 go 1.16
 
