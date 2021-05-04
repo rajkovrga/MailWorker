@@ -6,14 +6,14 @@ COPY . .
 
 ENV CGO_ENABLED=0
 
-RUN go build main.go -o build/worker
+RUN go build -o worker main.go
 
-FROM apline:3.19
+FROM alpine:latest
 
 WORKDIR /app
 
 ENV PORT=3000
 
-COPY --from=builder /app/build/worker .
+COPY --from=builder /app/worker .
 
 CMD ["./worker"]

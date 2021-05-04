@@ -1,4 +1,4 @@
-FROM brossquad/php-dev:8.0-1.1.0 as buider
+FROM brossquad/php-dev:8.0-1.1.0 as builder
 
 WORKDIR /var/www/html/MailWorkerApi
 
@@ -12,7 +12,8 @@ FROM brossquad/php-dev:8.0-1.1.0
 WORKDIR /var/www/html/MailWorkerApi
 
 COPY . .
-COPY --from=builder /var/www/html/MailWorkerApi/vendor ./vendor
+
+COPY --from=builder /var/www/html/MailWorkerApi/vendor /var/www/html/MailWorkerApi/vendor
 
 RUN  chmod -R 777 storage \
     && chmod -R 777 bootstrap
