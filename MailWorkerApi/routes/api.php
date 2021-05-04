@@ -15,9 +15,10 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/register', [AuthController::class, 'register']);
+
 Route::group([], function ()
 {
-    Route::post('/register', [AuthController::class, 'register']);
     Route::get('/verify', [AuthController::class, 'verify'])->name('verify');
 });
 Route::post('/login', [AuthController::class, 'login']);
@@ -34,10 +35,10 @@ Route::middleware('auth:sanctum')->group( function ()
 
     Route::put('/subscriber/edit/{id}', [WorkerController::class, 'editSubscriber']);
 
-    Route::put('/user/{id}', [WorkerController::class, 'getUser']);
-    Route::put('/users/{page}', [WorkerController::class, 'getUsers']);
-    Route::put('/subscribers/{page}', [WorkerController::class, 'getSubscribers']);
-    Route::put('/filter/users', [WorkerController::class, 'getFilteredUsers']);
+    Route::get('/user/{id}', [WorkerController::class, 'getUser']);
+    Route::get('/users/{page}', [WorkerController::class, 'getUsers']);
+    Route::get('/subscribers/{page}', [WorkerController::class, 'getSubscribers']);
+    Route::get('/filter/users', [WorkerController::class, 'getFilteredUsers']);
 
     Route::post('/send', [WorkerController::class, 'sendMessage']);
 });
