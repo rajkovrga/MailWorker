@@ -69,7 +69,7 @@ class AuthController extends Controller
                 'lastName' => $user->last_name,
                 'email' => $user->email
             ])));
-            return response()->json($user, 201);
+            return response()->json('Verify email', 201);
         }
         catch (QueryException $exception)
         {

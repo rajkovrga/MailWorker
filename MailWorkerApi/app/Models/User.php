@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\PersonalAccessToken as SanctumPersonalAccessToken;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends SanctumPersonalAccessToken
+class User extends SanctumPersonalAccessToken implements ShouldQueue
 {
-    use HasFactory, HasApiTokens, Notifiable;
+    use HasFactory, HasApiTokens, Queueable;
 
     protected $fillable = [
         'email',

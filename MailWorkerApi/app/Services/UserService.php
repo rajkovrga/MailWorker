@@ -90,7 +90,7 @@ class UserService
 
     public function getUser($id)
     {
-        return User::query()->find($id);
+        return User::query()->findOrFail($id);
     }
 
     public function getFilterUsers($search)

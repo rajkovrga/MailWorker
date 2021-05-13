@@ -77,6 +77,8 @@ return [
             'driver' => 'redis',
             'connection' => 'cache',
             'lock_connection' => 'default',
+            'queue' => 'default',
+            'retry_after' => 90,
         ],
 
         'dynamodb' => [

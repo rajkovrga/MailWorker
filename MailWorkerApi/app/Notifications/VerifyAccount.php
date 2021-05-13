@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Notifications;
-
-use App\Dto\UserDto;
 use App\Models\User;
+use App\Dto\UserDto;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
