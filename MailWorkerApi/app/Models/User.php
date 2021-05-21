@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\PersonalAccessToken as SanctumPersonalAccessToken;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends SanctumPersonalAccessToken implements ShouldQueue
+class User extends SanctumPersonalAccessToken
 {
-    use HasFactory, HasApiTokens, Queueable;
+    use HasFactory, HasApiTokens, Notifiable;
 
     protected $fillable = [
         'email',

@@ -12,4 +12,10 @@ class EmailVerifyException extends \Exception
     {
         parent::__construct($message, $code, $previous);
     }
+
+
+    public function render()
+    {
+        return response()->json(['message' => 'User is not verified'], 405);
+    }
 }

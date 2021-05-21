@@ -5,6 +5,7 @@ use App\Dto\UserDto;
 use App\Exceptions\EmailVerifyException;
 use App\Exceptions\NotActiveException;
 use App\Exceptions\PasswordIsNotCorrectException;
+use App\Exceptions\PasswordUserIsNotCorrectException;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\Hashing\Hasher;
@@ -44,7 +45,7 @@ class AuthService
         }
 
         if(!$this->hasher->check($password, $user->password))
-            throw new PasswordIsNotCorrectException();
+            throw new PasswordUserIsNotCorrectException();
 
         return $user;
     }

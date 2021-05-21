@@ -13,4 +13,11 @@ class NotActiveException extends \Exception
         parent::__construct($message, $code, $previous);
     }
 
+
+
+    public function render()
+    {
+        return response()->json(['message' => 'User is not active'], 405);
+    }
+
 }
