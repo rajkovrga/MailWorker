@@ -126,6 +126,7 @@ return [
             'port' => env('REDIS_PORT', 6379),
             'database' => 0,
             'read_write_timeout' => 60,
+
         ],
 
 
@@ -139,7 +140,7 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),
-            'prefix'  => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
+            'prefix'  => env('REDIS_PREFIX', 'laravel_database_'),
         ],
     ],
 

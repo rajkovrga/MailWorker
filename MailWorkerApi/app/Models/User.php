@@ -31,4 +31,9 @@ class User extends SanctumPersonalAccessToken
         return $this->belongsToMany( Subscriber::class,'user_subscriber', 'user_id','subscriber_id');
     }
 
+    public function requests()
+    {
+        return $this->hasMany(MailRequest::class, 'user_id', 'id');
+    }
+
 }

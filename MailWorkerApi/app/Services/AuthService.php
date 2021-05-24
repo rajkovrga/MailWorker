@@ -4,7 +4,6 @@ namespace App\Services;
 use App\Dto\UserDto;
 use App\Exceptions\EmailVerifyException;
 use App\Exceptions\NotActiveException;
-use App\Exceptions\PasswordIsNotCorrectException;
 use App\Exceptions\PasswordUserIsNotCorrectException;
 use App\Models\User;
 use Carbon\Carbon;

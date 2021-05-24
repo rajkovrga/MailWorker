@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subscriber extends Model
+class MailRequest extends Model
 {
     use HasFactory;
-    protected $fillable = [
-      'email'
-    ];
+
+    protected $fillable = ['description', 'title'];
 }

@@ -3,16 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Dto\FilterSubDto;
+use App\Http\Requests\MailRequestRequest;
 use App\Http\Requests\SubRequest;
 use App\Http\Requests\SubscriberFilterRequest;
 use App\Http\Requests\SubsRequest;
 use App\Http\Requests\UserFilterRequest;
-use App\Models\User;
 use App\Services\UserService;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redis;
 
 class WorkerController extends Controller
 {
@@ -40,14 +38,14 @@ class WorkerController extends Controller
 
     public function removeSubscriber(Request $request, $id)
     {
-            $this->workService->removeSubscriber($id, $request->user()->id);
-            return response()->json('Subscriber removed', 204);
+        $this->workService->removeSubscriber($id, $request->user()->id);
+        return response()->json('Subscriber removed', 204);
     }
 
     public function removeSubscribers(Request $request)
     {
-            $this->workService->removeSubscribers($request->input('data'), $request->user()->id);
-            return response()->json('Subscribers removed', 204);
+        $this->workService->removeSubscribers($request->input('data'), $request->user()->id);
+        return response()->json('Subscribers removed', 204);
     }
 
     public function editSubscriber(Request $request, $id)
@@ -88,8 +86,10 @@ class WorkerController extends Controller
 
     }
 
-    public function sendMessage(Request $request)
+    public function sendMessage(MailRequestRequest $request)
     {
-
+        $data = $request->validated();
+        $id = $this->workService->insetRequest($request->user()->id, $data['description'], $data['title']);
+        Redis::set($id, $id);
     }
 }

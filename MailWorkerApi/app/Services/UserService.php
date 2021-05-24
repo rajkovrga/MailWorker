@@ -4,6 +4,7 @@
 namespace App\Services;
 
 use App\Dto\FilterSubDto;
+use App\Models\MailRequest;
 use App\Models\Subscriber;
 use App\Models\User;
 
@@ -97,6 +98,20 @@ class UserService
     {
         $users = User::query()->where('email','like','%'.$search.'%')->limit(10);
         return $users;
+    }
+
+    public function insetRequest($userId, $description, $title = '')
+    {
+        $user = User::query()->findOrFail($userId);
+
+        $request = new MailRequest([
+            'title' => $title,
+            'description' => $description
+        ]);
+
+        $user->requests()->save($request);
+
+        return $request->id;
     }
 
 }
